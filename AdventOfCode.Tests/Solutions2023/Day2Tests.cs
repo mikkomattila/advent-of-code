@@ -1,4 +1,4 @@
-using AdventOfCode.Solutions2023.Day2;
+using AdventOfCode.Solutions2023;
 using FluentAssertions;
 
 namespace AdventOfCode.Tests.Solutions2023;

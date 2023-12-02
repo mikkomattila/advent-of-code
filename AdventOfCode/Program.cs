@@ -1,11 +1,11 @@
 ﻿using AdventOfCode.Interfaces;
-using AdventOfCode.Solutions2023.Day2;
+using AdventOfCode.Solutions2023;
 
 Console.WriteLine("Advent of Code\n");
 
 IDay day;
 
-// TODO
+// TODO: Provide day as an argument
 day = new Day2();
 day.Run();
 

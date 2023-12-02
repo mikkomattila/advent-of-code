@@ -1,6 +1,6 @@
 ﻿using AdventOfCode.Interfaces;
 
-namespace AdventOfCode.Solutions2023.Day2;
+namespace AdventOfCode.Solutions2023;
 
 // 2023-2 https://adventofcode.com/2023/day/2
 public class Day2 : IDay
@@ -20,7 +20,7 @@ public class Day2 : IDay
         try
         {
             var input = Helper.ReadInputLines(_inputFolder, _inputFileName);
-            var games = ParseGamesFromStringInput(input) 
+            var games = ParseGamesFromStringInput(input)
                 ?? throw new Exception("Error parsing games during 2023-02.");
 
             Console.WriteLine(
