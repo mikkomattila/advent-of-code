@@ -5,7 +5,6 @@ namespace AdventOfCode.Tests.Helpers;
 public class HelperTests
 {
     private readonly string _inputFolder = "Solutions2023";
-    private static readonly string _fileName = "Day2TestInput.txt";
 
     [Fact]
     public void ReadInputLines_Returns_CorrectAmountOfRows()

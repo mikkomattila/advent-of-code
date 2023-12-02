@@ -1,4 +1,5 @@
-﻿using AdventOfCode.Interfaces;
+﻿using AdventOfCode.Classes;
+using AdventOfCode.Interfaces;
 
 namespace AdventOfCode.Solutions2023;
 
@@ -18,23 +19,15 @@ public class Day2 : IDay
     public record Game(int Id, IReadOnlyList<Colors> Colors);
     public record Colors(int Red, int Green, int Blue);
 
-    public void Run()
+    public DayResult GetResultForDay()
     {
-        try
-        {
-            var input = Helper.ReadInputLines(_inputFolder, _inputFileName);
-            var games = ParseGamesFromStringInput(input)
-                ?? throw new Exception("Error parsing games during 2023-02.");
+        var input = Helper.ReadInputLines(_inputFolder, _inputFileName);
+        var games = ParseGamesFromStringInput(input);
 
-            Console.WriteLine(
-                $"2023-02 answer 1: {GetFirstAnswer(games)}\n" +
-                $"2023-02 answer 2: {GetSecondAnswer(games)}"
-            );
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error during 2023-02. Ex: {ex}");
-        }
+        var firstAnswer = GetFirstAnswer(games);
+        var secondAnswer = GetSecondAnswer(games);
+
+        return new DayResult(firstAnswer, secondAnswer);
     }
 
     public static List<Game> ParseGamesFromStringInput(string[] input)

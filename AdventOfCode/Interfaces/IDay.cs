@@ -1,6 +1,8 @@
-﻿namespace AdventOfCode.Interfaces;
+﻿using AdventOfCode.Classes;
+
+namespace AdventOfCode.Interfaces;
 
 public interface IDay
 {
-    void Run();
+    DayResult GetResultForDay();
 }

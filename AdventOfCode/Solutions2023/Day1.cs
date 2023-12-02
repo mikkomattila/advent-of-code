@@ -1,4 +1,5 @@
-﻿using AdventOfCode.Interfaces;
+﻿using AdventOfCode.Classes;
+using AdventOfCode.Interfaces;
 using System.Text.RegularExpressions;
 
 namespace AdventOfCode.Solutions2023;
@@ -11,7 +12,6 @@ public class Day1 : IDay
 {
     private static readonly string _inputFolder = "Solutions2023";
     private static readonly string _inputFileName = "Day1Input.txt";
-
     private static readonly Dictionary<string, string> _numericMapping = new() {
         { "one", "1" },
         { "two", "2" },
@@ -33,38 +33,35 @@ public class Day1 : IDay
         { "9", "9" },
     };
 
-    public void Run()
+    public DayResult GetResultForDay()
     {
         var input = Helper.ReadInputLines(_inputFolder, _inputFileName);
         var firstAnswer = ParseCombinedDigits(input).Sum();
         var secondAnswer = ParseCombinedDigits(input, true).Sum();
 
-        Console.WriteLine(
-            $"2023-01 answer 1: {firstAnswer}\n" +
-            $"2023-01 answer 2: {secondAnswer}"
-        );
+        return new DayResult(firstAnswer, secondAnswer);
     }
     
     public static string AggregateNumbers(string input, bool includeWords)
     {
         var pattern = includeWords 
-            ? @"(?i)(one|two|three|four|five|six|seven|eight|nine|\d{1})" 
+            ? @"(?=(one|two|three|four|five|six|seven|eight|nine|\d{1}))" 
             : @"(\d{1})";
+
         
-        var matches = Regex.Matches(input, pattern);
-
-        var aggregate = matches
-            .Aggregate(string.Empty, (output, next) => output + _numericMapping[next.Groups[1].Value]);
-
-        return aggregate;
+        return Regex.Matches(input, pattern)
+            .Aggregate(
+                string.Empty, 
+                (output, next) => output + _numericMapping[next.Groups[1].Value]
+            );
     }
 
     public static List<int> ParseCombinedDigits(string[] input, bool includeWords = false)
         => input.Select(x =>
             {
-                var numbersAggregate = AggregateNumbers(x, includeWords);
-                var firstDigit = numbersAggregate.Substring(0, 1);
-                var secondDigit = numbersAggregate.Substring(numbersAggregate.Length - 1, 1);
+               var numbersAggregate = AggregateNumbers(x, includeWords);
+               var firstDigit = numbersAggregate.Substring(0, 1);
+               var secondDigit = numbersAggregate.Substring(numbersAggregate.Length - 1, 1);
                 return CombineNumbers(firstDigit, secondDigit);
             }
         ).ToList() 
