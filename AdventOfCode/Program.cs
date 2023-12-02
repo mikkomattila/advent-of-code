@@ -6,7 +6,7 @@ Console.WriteLine("Advent of Code\n");
 IDay day;
 
 // TODO: Provide day as an argument
-day = new Day2();
+day = new Day1();
 day.Run();
 
 Console.WriteLine("\nPress any key to exit...");

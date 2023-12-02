@@ -2,7 +2,10 @@
 
 namespace AdventOfCode.Solutions2023;
 
-// 2023-2 https://adventofcode.com/2023/day/2
+/// <summary>
+/// 2023-2
+/// https://adventofcode.com/2023/day/2
+/// </summary>
 public class Day2 : IDay
 {
     private static readonly string _inputFolder = "Solutions2023";
