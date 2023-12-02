@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 
-namespace AdventOfCode.Tests;
+namespace AdventOfCode.Tests.Helpers;
 
 public class HelperTests
 {
