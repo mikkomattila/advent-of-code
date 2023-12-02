@@ -1,7 +1,13 @@
-﻿using AdventOfCode.Solutions2023.Day2;
+﻿using AdventOfCode.Interfaces;
+using AdventOfCode.Solutions2023.Day2;
 
-var day2 = new Day2();
-day2.Run();
+Console.WriteLine("Advent of Code\n");
+
+IDay day;
+
+// TODO
+day = new Day2();
+day.Run();
 
 Console.WriteLine("\nPress any key to exit...");
 Console.ReadKey();

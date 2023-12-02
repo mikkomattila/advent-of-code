@@ -5,8 +5,8 @@ namespace AdventOfCode.Solutions2023.Day2;
 // 2023-2 https://adventofcode.com/2023/day/2
 public class Day2 : IDay
 {
-    private readonly string _inputFolder = "Solutions2023";
-    private readonly string _inputFileName = "Day2Input.txt";
+    private static readonly string _inputFolder = "Solutions2023";
+    private static readonly string _inputFileName = "Day2Input.txt";
 
     private const int _redMax = 12;
     private const int _greenMax = 13;
@@ -24,8 +24,8 @@ public class Day2 : IDay
                 ?? throw new Exception("Error parsing games during 2023-02.");
 
             Console.WriteLine(
-                $"DAY2 answer 1: {GetFirstAnswer(games)}\n" +
-                $"DAY2 answer 2: {GetSecondAnswer(games)}"
+                $"2023-02 answer 1: {GetFirstAnswer(games)}\n" +
+                $"2023-02 answer 2: {GetSecondAnswer(games)}"
             );
         }
         catch (Exception ex)

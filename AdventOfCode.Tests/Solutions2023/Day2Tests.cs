@@ -18,6 +18,7 @@ public class Day2Tests
 
         games.Should().NotBeEmpty();
         games.Should().HaveCount(5);
+        games[0].Colors[0].Red.Should().Be(4);
         games[2].Id.Should().Be(3);
         games[2].Colors[0].Green.Should().Be(8);
         games[4].Colors[1].Green.Should().Be(2);
@@ -26,8 +27,7 @@ public class Day2Tests
     [Fact]
     public void GetFirstAnswer_Returns_CorrectAnswer()
     {
-        var input = Helper.ReadInputLines(_inputFolder, _fileName);
-        var games = Day2.ParseGamesFromStringInput(input);
+        var games = ParseGames();
         var result = Day2.GetFirstAnswer(games);
 
         result.Should().Be(_firstAnswer);
@@ -36,10 +36,15 @@ public class Day2Tests
     [Fact]
     public void GetSecondAnswer_Returns_CorrectAnswer()
     {
-        var input = Helper.ReadInputLines(_inputFolder, _fileName);
-        var games = Day2.ParseGamesFromStringInput(input);
+        var games = ParseGames();
         var result = Day2.GetSecondAnswer(games);
 
         result.Should().Be(_secondAnswer);
+    }
+
+    protected List<Day2.Game> ParseGames()
+    {
+        var input = Helper.ReadInputLines(_inputFolder, _fileName);
+        return Day2.ParseGamesFromStringInput(input);
     }
 }

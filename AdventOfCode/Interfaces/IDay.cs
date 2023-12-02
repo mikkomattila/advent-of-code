@@ -2,5 +2,5 @@
 
 public interface IDay
 {
-    public void Run();
+    void Run();
 }
