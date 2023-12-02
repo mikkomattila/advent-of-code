@@ -7,4 +7,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="D:\Code\AdventOfCode\AdventOfCode\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="D:\Code\AdventOfCode\AdventOfCode\.editorconfig" />
+  </ItemGroup>
+
 </Project>

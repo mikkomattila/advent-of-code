@@ -12,7 +12,8 @@ public class Day1 : IDay
 {
     private static readonly string _inputFolder = "Solutions2023";
     private static readonly string _inputFileName = "Day1Input.txt";
-    private static readonly Dictionary<string, string> _numericMapping = new() {
+    private static readonly Dictionary<string, string> _numericMapping = new() 
+    {
         { "one", "1" },
         { "two", "2" },
         { "three", "3" },
@@ -42,30 +43,30 @@ public class Day1 : IDay
         return new DayResult(firstAnswer, secondAnswer);
     }
     
-    public static string AggregateNumbers(string input, bool includeWords)
-    {
-        var pattern = includeWords 
-            ? @"(?=(one|two|three|four|five|six|seven|eight|nine|\d{1}))" 
-            : @"(\d{1})";
-
-        
-        return Regex.Matches(input, pattern)
-            .Aggregate(
-                string.Empty, 
-                (output, next) => output + _numericMapping[next.Groups[1].Value]
-            );
-    }
-
     public static List<int> ParseCombinedDigits(string[] input, bool includeWords = false)
         => input.Select(x =>
             {
-               var numbersAggregate = AggregateNumbers(x, includeWords);
-               var firstDigit = numbersAggregate.Substring(0, 1);
-               var secondDigit = numbersAggregate.Substring(numbersAggregate.Length - 1, 1);
+                var numbersAggregate = AggregateNumbers(x, includeWords);
+                var firstDigit = numbersAggregate.Substring(0, 1);
+                var secondDigit = numbersAggregate.Substring(numbersAggregate.Length - 1, 1);
+
                 return CombineNumbers(firstDigit, secondDigit);
             }
         ).ToList() 
         ?? new List<int>();
+
+    private static string AggregateNumbers(string input, bool includeWords)
+    {
+        var pattern = includeWords
+            ? @"(?=(one|two|three|four|five|six|seven|eight|nine|\d{1}))"
+            : @"(\d{1})";
+
+        return Regex.Matches(input, pattern)
+            .Aggregate(
+                string.Empty,
+                (output, next) => output + _numericMapping[next.Groups[1].Value]
+            );
+    }
 
     private static int CombineNumbers(string firstDigit, string secondDigit)
         => int.Parse(firstDigit) * 10 + int.Parse(secondDigit);
