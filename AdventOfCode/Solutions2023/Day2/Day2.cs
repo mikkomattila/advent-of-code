@@ -5,19 +5,37 @@ namespace AdventOfCode.Solutions2023.Day2;
 // 2023-2 https://adventofcode.com/2023/day/2
 public class Day2 : IDay
 {
+    private readonly string _inputFolder = "Solutions2023";
     private readonly string _inputFileName = "Day2Input.txt";
 
-    private const int _red = 12;
-    private const int _green = 13;
-    private const int _blue = 14;
+    private const int _redMax = 12;
+    private const int _greenMax = 13;
+    private const int _blueMax = 14;
 
-    record Game(int Id, IReadOnlyList<Colors> Colors);
-    record Colors(int Red, int Green, int Blue);
+    public record Game(int Id, IReadOnlyList<Colors> Colors);
+    public record Colors(int Red, int Green, int Blue);
 
     public void Run()
     {
-        var input = Helpers.ReadInputLines(_inputFileName);
-        var games = input.Select(x =>
+        try
+        {
+            var input = Helper.ReadInputLines(_inputFolder, _inputFileName);
+            var games = ParseGamesFromStringInput(input) 
+                ?? throw new Exception("Error parsing games during 2023-02.");
+
+            Console.WriteLine(
+                $"DAY2 answer 1: {GetFirstAnswer(games)}\n" +
+                $"DAY2 answer 2: {GetSecondAnswer(games)}"
+            );
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error during 2023-02. Ex: {ex}");
+        }
+    }
+
+    public static List<Game> ParseGamesFromStringInput(string[] input)
+        => input.Select(x =>
         {
             var gameAndColors = x.Split(":");
             return new Game(
@@ -39,14 +57,17 @@ public class Day2 : IDay
                    );
                }).ToList()
             );
-        });
+        }
+    ).ToList();
 
-        var answer1 = games
-            .Where(g => g.Colors.All(c => c is { Red: <= _red, Green: <= _green, Blue: <= _blue }))
+    public static int GetFirstAnswer(IEnumerable<Game> games)
+        => games
+            .Where(g => g.Colors.All(c => c is { Red: <= _redMax, Green: <= _greenMax, Blue: <= _blueMax }))
             .Sum(r => r.Id);
 
-        var answer2 = games
-            .Select(x => 
+    public static int GetSecondAnswer(IEnumerable<Game> games)
+        => games
+            .Select(x =>
                     new Colors(
                         Red: x.Colors.MaxBy(c => c.Red)?.Red ?? 0,
                         Green: x.Colors.MaxBy(c => c.Green)?.Green ?? 0,
@@ -59,9 +80,5 @@ public class Day2 : IDay
                 return power;
             }
         ).Sum();
-
-        Console.WriteLine($"DAY2 answer 1: {answer1}\n" +
-            $"DAY2 answer 2: {answer2}");
-    }
 }
 
