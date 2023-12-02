@@ -1,2 +1,3 @@
 # Advent of Code
-https://adventofcode.com
+Christmas calendar of small coding challenges: https://adventofcode.com. My C# solutions to some of them.
+ 
