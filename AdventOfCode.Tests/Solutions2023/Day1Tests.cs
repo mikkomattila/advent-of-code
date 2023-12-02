@@ -5,7 +5,6 @@ namespace AdventOfCode.Tests.Solutions2023;
 
 public class Day1Tests
 {
-    private readonly string _inputFolder = "Solutions2023";
     private static readonly string _testInput1 = "Day1TestInput1.txt";
     private static readonly string _testInput2 = "Day1TestInput2.txt";
 

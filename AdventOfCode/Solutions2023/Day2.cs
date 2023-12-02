@@ -4,14 +4,11 @@ using AdventOfCode.Interfaces;
 namespace AdventOfCode.Solutions2023;
 
 /// <summary>
-/// 2023-2
-/// https://adventofcode.com/2023/day/2
+/// Solution for day 2 of 2023.
+/// Instructions: https://adventofcode.com/2023/day/2.
 /// </summary>
 public class Day2 : IDay
 {
-    private static readonly string _inputFolder = "Solutions2023";
-    private static readonly string _inputFileName = "Day2Input.txt";
-
     private const int _redMax = 12;
     private const int _greenMax = 13;
     private const int _blueMax = 14;
@@ -21,7 +18,7 @@ public class Day2 : IDay
 
     public DayResult GetResultForDay()
     {
-        var input = Helper.ReadInputLines(_inputFolder, _inputFileName);
+        var input = Helper.ReadInputLines("Day2Input.txt");
         var games = ParseGamesFromStringInput(input);
 
         var firstAnswer = GetFirstAnswer(games);
@@ -30,7 +27,7 @@ public class Day2 : IDay
         return new DayResult(firstAnswer, secondAnswer);
     }
 
-    public static List<Game> ParseGamesFromStringInput(string[] input)
+    public static IReadOnlyList<Game> ParseGamesFromStringInput(string[] input)
         => input.Select(x =>
         {
             var gameAndColors = x.Split(":");

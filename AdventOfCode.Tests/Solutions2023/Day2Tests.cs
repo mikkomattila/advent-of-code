@@ -5,15 +5,14 @@ namespace AdventOfCode.Tests.Solutions2023;
 
 public class Day2Tests
 {
-    private readonly string _inputFolder = "Solutions2023";
     private static readonly string _fileName = "Day2TestInput.txt";
     private static readonly int _firstAnswer = 8;
     private static readonly int _secondAnswer = 2286;
 
     [Fact]
-    public void ParseGamesFromStringInput_Returns_CorrectAnswer()
+    public static void ParseGamesFromStringInput_Returns_CorrectAnswer()
     {
-        var input = Helper.ReadInputLines(_inputFolder, _fileName);
+        var input = Helper.ReadInputLines(_fileName);
         var games = Day2.ParseGamesFromStringInput(input);
 
         games.Should().NotBeEmpty();
@@ -25,7 +24,7 @@ public class Day2Tests
     }
 
     [Fact]
-    public void GetFirstAnswer_Returns_CorrectAnswer()
+    public static void GetFirstAnswer_Returns_CorrectAnswer()
     {
         var games = ParseGames();
         var result = Day2.GetFirstAnswer(games);
@@ -34,7 +33,7 @@ public class Day2Tests
     }
 
     [Fact]
-    public void GetSecondAnswer_Returns_CorrectAnswer()
+    public static void GetSecondAnswer_Returns_CorrectAnswer()
     {
         var games = ParseGames();
         var result = Day2.GetSecondAnswer(games);
@@ -42,9 +41,9 @@ public class Day2Tests
         result.Should().Be(_secondAnswer);
     }
 
-    protected List<Day2.Game> ParseGames()
+    protected static IReadOnlyList<Day2.Game> ParseGames()
     {
-        var input = Helper.ReadInputLines(_inputFolder, _fileName);
+        var input = Helper.ReadInputLines(_fileName);
         return Day2.ParseGamesFromStringInput(input);
     }
 }
