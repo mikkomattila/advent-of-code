@@ -2,6 +2,7 @@
 
 namespace AdventOfCode.Solutions2023.Day2;
 
+// 2023-2 https://adventofcode.com/2023/day/2
 public class Day2 : IDay
 {
     private readonly string _inputFileName = "Day2Input.txt";
@@ -19,7 +20,6 @@ public class Day2 : IDay
         var games = input.Select(x =>
         {
             var gameAndColors = x.Split(":");
-
             return new Game(
                Id: int.Parse(gameAndColors[0].Split(" ")[1]),
                Colors: gameAndColors[1].Split(";").Select(c =>
@@ -53,14 +53,15 @@ public class Day2 : IDay
                         Blue: x.Colors.MaxBy(c => c.Blue)?.Blue ?? 0
                     )
             )
-            .Select(x =>
+            .Select(result =>
             {
-                return x.Red * x.Green * x.Blue;
+                var power = result.Red * result.Green * result.Blue;
+                return power;
             }
         ).Sum();
 
-        Console.WriteLine($"DAY2 answer 1: {answer1}");
-        Console.WriteLine($"DAY2 answer 2: {answer2}");
+        Console.WriteLine($"DAY2 answer 1: {answer1}\n" +
+            $"DAY2 answer 2: {answer2}");
     }
 }
 
