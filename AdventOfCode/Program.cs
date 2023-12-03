@@ -6,7 +6,7 @@ Console.WriteLine("Advent of Code\n");
 IDay day;
 
 // TODO: Provide day as an argument
-day = new Day1();
+day = new Day3();
 var result = day.GetResultForDay();
 
 Console.WriteLine(
