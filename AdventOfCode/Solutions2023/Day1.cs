@@ -41,10 +41,10 @@ public class Day1 : IDay
         return new DayResult(combinedDigits.Sum(), combinedDigitsIncludeWords.Sum());
     }
     
-    public static IReadOnlyList<int> ParseCombinedDigits(string[] input, bool includeWords = false)
+    public static IReadOnlyList<int> ParseCombinedDigits(string[] input, bool includeSpelledNumbers = false)
         => input.Select(i =>
             {
-                var numbersAggregate = AggregateNumbers(i, includeWords);
+                var numbersAggregate = AggregateNumbers(i, includeSpelledNumbers);
                 var firstDigit = numbersAggregate.Substring(0, 1);
                 var secondDigit = numbersAggregate.Substring(numbersAggregate.Length - 1, 1);
 
@@ -53,9 +53,9 @@ public class Day1 : IDay
         ).ToList() 
         ?? new List<int>();
 
-    private static string AggregateNumbers(string input, bool includeWords)
+    private static string AggregateNumbers(string input, bool includeSpelledNumbers)
     {
-        var pattern = includeWords
+        var pattern = includeSpelledNumbers
             ? @"(?=(one|two|three|four|five|six|seven|eight|nine|\d{1}))"
             : @"(\d{1})";
 

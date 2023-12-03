@@ -10,7 +10,7 @@ public static class Helper
         var className = $"AdventOfCode.Solutions{year}.Day{day}";
         var dayType = Type.GetType(className);
 
-        if (dayType == null)
+        if (dayType is null)
             Console.WriteLine($"Solution not found for day provided ({day}).");
 
         if (!typeof(IDay).IsAssignableFrom(dayType))

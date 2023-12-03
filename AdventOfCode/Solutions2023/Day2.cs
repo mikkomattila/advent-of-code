@@ -44,9 +44,9 @@ public class Day2 : IDay
                    ).ToList();
 
                    return new Colors(
-                       Red: colors.FirstOrDefault(r => r.Color == "red").Count,
-                       Green: colors.FirstOrDefault(r => r.Color == "green").Count,
-                       Blue: colors.FirstOrDefault(r => r.Color == "blue").Count
+                       Red: colors.FirstOrDefault(r => r.Color is "red").Count,
+                       Green: colors.FirstOrDefault(r => r.Color is "green").Count,
+                       Blue: colors.FirstOrDefault(r => r.Color is "blue").Count
                    );
                }).ToList()
             );
