@@ -1,18 +1,24 @@
-﻿using AdventOfCode.Interfaces;
-using AdventOfCode.Solutions2023;
+﻿using AdventOfCode;
 
 Console.WriteLine("Advent of Code\n");
+Console.WriteLine("Get solution for day:");
 
-IDay day;
-
-// TODO: Provide day as an argument
-day = new Day3();
-var result = day.GetResultForDay();
-
-Console.WriteLine(
-    $"Answer 1: {result.FirstAnswer}\n" +
-    $"Answer 2: {result.SecondAnswer}"
-);
-
-Console.WriteLine("\nPress any key to exit...");
-Console.ReadKey();
+if (int.TryParse(Console.ReadLine(), out int day))
+{
+    try
+    {
+        var result = Helper.GetResultForDay(day);
+        Console.WriteLine(
+            $"\n2023-{day} Answer 1: {result.FirstAnswer}\n" +
+            $"2023-{day} Answer 2: {result.SecondAnswer}"
+        );
+    }
+    catch (ArgumentException ex)
+    {
+        Console.WriteLine(ex.Message);
+    }
+}
+else
+{
+    Console.WriteLine("Invalid input. Please enter a valid integer for the day.");
+}
