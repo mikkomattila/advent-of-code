@@ -69,8 +69,7 @@ public class Day2 : IDay
             )
             .Select(result =>
             {
-                var power = result.Red * result.Green * result.Blue;
-                return power;
+                return result.Red * result.Green * result.Blue;
             }
         ).Sum();
 }
