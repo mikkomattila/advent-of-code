@@ -5,10 +5,6 @@ namespace AdventOfCode.Tests.Solutions2023;
 
 public class Day2Tests
 {
-    private static readonly string _fileName = "Day2TestInput.txt";
-    private static readonly int _firstAnswer = 8;
-    private static readonly int _secondAnswer = 2286;
-
     [Fact]
     public static void ParseGamesFromStringInput_Returns_CorrectAnswer()
     {
@@ -29,7 +25,7 @@ public class Day2Tests
         var games = ParseGames();
         var result = Day2.GetFirstAnswer(games);
 
-        result.Should().Be(_firstAnswer);
+        result.Should().Be(8);
     }
 
     [Fact]
@@ -38,7 +34,7 @@ public class Day2Tests
         var games = ParseGames();
         var result = Day2.GetSecondAnswer(games);
 
-        result.Should().Be(_secondAnswer);
+        result.Should().Be(2286);
     }
 
     protected static IReadOnlyList<Day2.Game> ParseGames()

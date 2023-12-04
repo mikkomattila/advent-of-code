@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AdventOfCode\AdventOfCode.CLI.csproj" />
+    <ProjectReference Include="..\AdventOfCode.CLI\AdventOfCode.CLI.csproj" />
   </ItemGroup>
 
 </Project>

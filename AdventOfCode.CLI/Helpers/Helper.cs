@@ -5,6 +5,12 @@ namespace AdventOfCode;
 
 public static class Helper
 {
+    /// <summary>
+    /// Get result for specified day.
+    /// </summary>
+    /// <param name="day">Solution day.</param>
+    /// <param name="year">Solution year, defaults to 2023.</param>
+    /// <returns></returns>
     public static DayResult GetResultForDay(int day, int year = 2023)
     {
         var className = $"AdventOfCode.Solutions{year}.Day{day}";
@@ -20,10 +26,18 @@ public static class Helper
         return dayInstance.GetResultForDay();
     }
 
-    public static string[] ReadInputLines(string day, string folder = "Solutions2023")
+    /// <summary>
+    /// Read a txt file from a specified folder.
+    /// </summary>
+    /// <param name="day">Day of the solution.</param>
+    /// <param name="folder">Folder name, defaults to Solutions2023.</param>
+    /// <param name="overrideFolderName">If folderName should be completely overwritten.</param>
+    /// <returns></returns>
+    public static string[] ReadInputLines(string day, string folder = "Solutions2023", bool overrideFolderNameByDay = false)
     {
         var basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..");
-        var filePath = Path.Combine(basePath, folder, "Data", $"Day{day}Input.txt");
+        var filePath = Path.Combine(basePath, folder, "Data", overrideFolderNameByDay ? day : $"Day{day}Input.txt");
+
         return File.ReadAllLines(filePath);
     }
 }

@@ -2,6 +2,7 @@
 using FluentAssertions;
 
 namespace AdventOfCode.Tests.Solutions2023;
+
 public class Day4Tests
 {
     [Fact]
