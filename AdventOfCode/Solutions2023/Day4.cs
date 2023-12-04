@@ -19,24 +19,18 @@ public class Day4 : IDay
 
     public static double GetFirstAnswer(string[] cards)
     {
-        var totalPoints = 0.0;
+        double totalPoints = 0.0;
 
         foreach (var card in cards)
         {
             var cardParts = card.Split('|');
             var winningNumbers = ParseNumbers(cardParts[0].Split(':')[1]);
             var resultNumbers = ParseNumbers(cardParts[1]);
-
             var matchingNumbers = winningNumbers.Intersect(resultNumbers).ToList();
-
-            var matchingNumbersWithIndex = matchingNumbers
-                .Select((value, i) => (value, i));
-
-            var points = matchingNumbers.Count == 0
-                ? 0
-                : Math.Pow(2, matchingNumbers.Count - 1);
-
-            totalPoints += points;
+            
+            totalPoints += matchingNumbers.Any()
+                ? Math.Pow(2, matchingNumbers.Count - 1)
+                : 0;
         }
 
         return totalPoints;
