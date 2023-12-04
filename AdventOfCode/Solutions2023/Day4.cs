@@ -10,7 +10,7 @@ namespace AdventOfCode.Solutions2023;
 /// </summary>
 public class Day4 : IDay
 {
-    record Card(int Id, List<int> WinningNumbers, List<int> ResultNumbers, List<int> MatchingNumbers);
+    record Card(int Id, List<int> WinningNumbers, List<int> MatchingNumbers);
 
     public DayResult GetResultForDay()
     {
@@ -96,7 +96,7 @@ public class Day4 : IDay
         var resultNumbers = ParseNumbers(cardParts[1]);
         var matchingNumbers = winningNumbers.Intersect(resultNumbers).ToList();
 
-        return new Card(id, winningNumbers, resultNumbers, matchingNumbers);
+        return new Card(id, winningNumbers, matchingNumbers);
     }
 
     private static List<int> ParseNumbers(string input)
