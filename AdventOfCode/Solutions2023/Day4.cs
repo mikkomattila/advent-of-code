@@ -23,17 +23,23 @@ public class Day4 : IDay
 
         foreach (var card in cards)
         {
-            var cardParts = card.Split('|');
-            var winningNumbers = ParseNumbers(cardParts[0].Split(':')[1]);
-            var resultNumbers = ParseNumbers(cardParts[1]);
-            var matchingNumbers = winningNumbers.Intersect(resultNumbers).ToList();
-            
+            var matchingNumbers = GetMatchingNumbersForCard(card);
+
             totalPoints += matchingNumbers.Any()
                 ? Math.Pow(2, matchingNumbers.Count - 1)
                 : 0;
         }
 
         return totalPoints;
+    }
+
+    private static List<int> GetMatchingNumbersForCard(string card)
+    {
+        var cardParts = card.Split('|');
+        var winningNumbers = ParseNumbers(cardParts[0].Split(':')[1]);
+        var resultNumbers = ParseNumbers(cardParts[1]);
+
+        return winningNumbers.Intersect(resultNumbers).ToList();
     }
 
     private static List<int> ParseNumbers(string input)
