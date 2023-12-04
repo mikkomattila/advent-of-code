@@ -18,7 +18,7 @@ public class Day2 : IDay
 
     public DayResult GetResultForDay()
     {
-        var input = Helper.ReadInputLines("Day2Input.txt");
+        var input = Helper.ReadInputLines("2");
         var games = ParseGamesFromStringInput(input);
 
         var firstAnswer = GetFirstAnswer(games);

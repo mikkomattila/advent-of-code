@@ -14,7 +14,7 @@ public class Day4 : IDay
 
     public DayResult GetResultForDay()
     {
-        var input = Helper.ReadInputLines("Day4Input.txt");
+        var input = Helper.ReadInputLines("4");
         var firstAnswer = GetFirstAnswer(input);
         var secondAnswer = GetSecondAnswer(input);
 
@@ -34,15 +34,15 @@ public class Day4 : IDay
 
     public static double GetSecondAnswer(string[] inputLines)
     {
-        var initialCards = inputLines.Select(CreateCard).ToList();
-        var result = initialCards.Count;
+        var cards = inputLines.Select(CreateCard).ToList();
+        var result = cards.Count;
 
-        foreach (var card in initialCards)
+        foreach (var card in cards)
         {
             var isMatchFound = card.MatchingNumbers.Any();
             if (!isMatchFound) continue;
 
-            var nextIds = GetNextCardMatchingIdsRecursively(card, initialCards);
+            var nextIds = GetNextCardMatchingIdsRecursively(card, cards);
             result += nextIds.Count;
         }
 

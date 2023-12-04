@@ -34,7 +34,7 @@ public class Day1 : IDay
 
     public DayResult GetResultForDay()
     {
-        var input = Helper.ReadInputLines("Day1Input.txt");
+        var input = Helper.ReadInputLines("1");
         var combinedDigits = ParseCombinedDigits(input);
         var combinedDigitsIncludeWords = ParseCombinedDigits(input, true);
 

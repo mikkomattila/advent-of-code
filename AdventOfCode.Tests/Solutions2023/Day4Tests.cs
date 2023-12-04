@@ -23,5 +23,5 @@ public class Day4Tests
     }
 
     protected static string[] GetInput() 
-        => Helper.ReadInputLines("Day4TestInput.txt");
+        => Helper.ReadInputLines("4Test");
 }

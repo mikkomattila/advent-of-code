@@ -20,10 +20,10 @@ public static class Helper
         return dayInstance.GetResultForDay();
     }
 
-    public static string[] ReadInputLines(string fileName, string folder = "Solutions2023")
+    public static string[] ReadInputLines(string day, string folder = "Solutions2023")
     {
         var basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..");
-        var filePath = Path.Combine(basePath, folder, "Data", fileName);
+        var filePath = Path.Combine(basePath, folder, "Data", $"Day{day}Input.txt");
         return File.ReadAllLines(filePath);
     }
 }
