@@ -4,16 +4,24 @@ using FluentAssertions;
 namespace AdventOfCode.Tests.Solutions2023;
 public class Day4Tests
 {
-    private static readonly string _fileName = "Day4TestInput.txt";
-    private static readonly double _firstAnswer = 13.0;
-    private static readonly double _secondAnswer = 30.0;
-
     [Fact]
     public void GetFirstAnswer_Returns_CorrectResult()
     {
-        var input = Helper.ReadInputLines(_fileName);
+        var input = GetInput();
         var firstAnswer = Day4.GetFirstAnswer(input);
 
-        firstAnswer.Should().Be(_firstAnswer);
+        firstAnswer.Should().Be(13.0);
     }
+
+    [Fact]
+    public void GetSecondAnswer_Returns_CorrectResult()
+    {
+        var input = GetInput();
+        var firstAnswer = Day4.GetSecondAnswer(input);
+
+        firstAnswer.Should().Be(30.0);
+    }
+
+    protected static string[] GetInput() 
+        => Helper.ReadInputLines("Day4TestInput.txt");
 }
