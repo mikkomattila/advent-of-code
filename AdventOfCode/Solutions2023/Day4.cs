@@ -23,18 +23,13 @@ public class Day4 : IDay
 
     public static double GetFirstAnswer(string[] inputLines)
     {
-        var totalPoints = 0.0;
+        var cards = inputLines.Select(CreateCard).ToList();
 
-        foreach (var input in inputLines)
-        {
-            var card = CreateCard(input);
-
-            totalPoints += card.MatchingNumbers.Any()
+        return cards.Sum(card =>
+            card.MatchingNumbers.Any()
                 ? Math.Pow(2, card.MatchingNumbers.Count - 1)
-                : 0;
-        }
-
-        return totalPoints;
+                : 0
+            );
     }
 
     public static double GetSecondAnswer(string[] inputLines)
