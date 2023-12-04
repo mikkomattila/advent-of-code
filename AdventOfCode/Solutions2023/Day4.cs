@@ -50,38 +50,42 @@ public class Day4 : IDay
 
         Console.WriteLine(string.Join(", ", initialCards.Select(x => x.Id).ToList()));
 
+        List<int> idList = new();
         initialCards.ForEach(card =>
         {
             var isMatchFound = card.MatchingNumbers.Any();
             if (isMatchFound)
             {
                 var nextCards = GetNextCards(card, initialCards);
+                idList.AddRange(nextCards.idList);
             }
         });
 
-        return scratchCards;
+        return scratchCards + idList.Count();
     }
 
-    private static List<Card> GetNextCards(Card card, List<Card> initialCards) 
+    private static (List<Card> nextCards, List<int> idList) GetNextCards(Card card, List<Card> initialCards) 
     {
+        List<int> idList = new List<int>();
         List<Card> nextCards = new();
 
-        foreach (var (match, i) in card.MatchingNumbers.Select((value, i) => (value, i))
+        foreach (var (match, i) in card.MatchingNumbers.Select((value, i) => (value, i)))
         {
             var nextCard = initialCards.ElementAt(card.Id + i);
             nextCards.Add(nextCard);
         }
 
         var ids = nextCards.Where(c => c.Id != card.Id).Select(c => c.Id).ToList();
-        var idsString = string.Join(',', ids);
-        if (!string.IsNullOrEmpty(idsString))
-            Console.WriteLine(idsString);
+        if (ids.Any())
+            idList.AddRange(ids);
         
+        foreach (var nextCard in nextCards)
+        {
+            var (nestedNextCards, nestedIds) = GetNextCards(nextCard, initialCards);
+            idList.AddRange(nestedIds);
+        }
 
-
-        nextCards.ForEach(x => GetNextCards(x, initialCards));
-
-        return nextCards;
+        return (nextCards, idList);
     }
 
     private static Card CreateCard(string input)
