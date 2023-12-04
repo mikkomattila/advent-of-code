@@ -48,28 +48,26 @@ public class Day4 : IDay
 
         scratchCards += initialCards.Count;
 
-        Console.WriteLine(string.Join(", ", initialCards.Select(x => x.Id).ToList()));
-
-        List<int> idList = new();
         initialCards.ForEach(card =>
         {
             var isMatchFound = card.MatchingNumbers.Any();
             if (isMatchFound)
             {
-                var nextCards = GetNextCards(card, initialCards);
-                idList.AddRange(nextCards.idList);
+                var nextIds = GetNextCardIdsRecursively(card, initialCards);
+                scratchCards += nextIds.Count();
             }
         });
 
-        return scratchCards + idList.Count();
+        return scratchCards;
     }
 
-    private static (List<Card> nextCards, List<int> idList) GetNextCards(Card card, List<Card> initialCards) 
+    private static List<int> GetNextCardIdsRecursively(Card card, List<Card> initialCards) 
     {
-        List<int> idList = new List<int>();
+        List<int> idList = new();
         List<Card> nextCards = new();
 
-        foreach (var (match, i) in card.MatchingNumbers.Select((value, i) => (value, i)))
+        var matchingNumbersWithIndex = card.MatchingNumbers.Select((value, i) => (value, i));
+        foreach (var (match, i) in matchingNumbersWithIndex)
         {
             var nextCard = initialCards.ElementAt(card.Id + i);
             nextCards.Add(nextCard);
@@ -81,11 +79,11 @@ public class Day4 : IDay
         
         foreach (var nextCard in nextCards)
         {
-            var (nestedNextCards, nestedIds) = GetNextCards(nextCard, initialCards);
+            var nestedIds = GetNextCardIdsRecursively(nextCard, initialCards);
             idList.AddRange(nestedIds);
         }
 
-        return (nextCards, idList);
+        return idList;
     }
 
     private static Card CreateCard(string input)
