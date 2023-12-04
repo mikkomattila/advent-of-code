@@ -64,16 +64,12 @@ public class Day4 : IDay
 
     private static List<Card> GetNextCards(Card card, List<Card> initialCards) 
     {
-        
         List<Card> nextCards = new();
 
-        var i = 0;
-
-        foreach (var match in card.MatchingNumbers)
+        foreach (var (match, i) in card.MatchingNumbers.Select((value, i) => (value, i))
         {
             var nextCard = initialCards.ElementAt(card.Id + i);
             nextCards.Add(nextCard);
-            i++;
         }
 
         var ids = nextCards.Where(c => c.Id != card.Id).Select(c => c.Id).ToList();
