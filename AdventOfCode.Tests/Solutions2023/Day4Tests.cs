@@ -6,7 +6,7 @@ namespace AdventOfCode.Tests.Solutions2023;
 public class Day4Tests
 {
     [Fact]
-    public void GetFirstAnswer_Returns_CorrectResult()
+    public void GetFirstAnswer_Returns_CorrectAnswer()
     {
         var input = GetInput();
         var firstAnswer = Day4.GetFirstAnswer(input);
@@ -15,7 +15,7 @@ public class Day4Tests
     }
 
     [Fact]
-    public void GetSecondAnswer_Returns_CorrectResult()
+    public void GetSecondAnswer_Returns_CorrectAnswer()
     {
         var input = GetInput();
         var firstAnswer = Day4.GetSecondAnswer(input);
@@ -24,5 +24,5 @@ public class Day4Tests
     }
 
     protected static string[] GetInput() 
-        => Helper.ReadInputLines("4Test");
+        => Helper.ReadInputLines("4");
 }

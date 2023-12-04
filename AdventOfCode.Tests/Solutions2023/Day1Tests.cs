@@ -1,13 +1,26 @@
+using AdventOfCode.Solutions2023;
+using FluentAssertions;
+
 namespace AdventOfCode.Tests.Solutions2023;
 
 public class Day1Tests
 {
-    private static readonly string _testInput1 = "Day1TestInput1.txt";
-    private static readonly string _testInput2 = "Day1TestInput2.txt";
+    [Fact]
+    public void GetFirstAnswer_Returns_CorrectAnswer()
+    {
+        var input = Helper.ReadInputLines("Day1Input1.txt", overrideFolderNameByDay: true);
+        var result = Day1.GetFirstAnswer(input);
 
-    private static readonly int _firstAnswer = 142;
-    private static readonly int _secondAnswer = 281;
+        result.Should().Be(142);
+    }
 
-    // TODO: Tests deleted by accident :)
+    [Fact]
+    public void GetSecondAnswer_Returns_CorrectAnswer()
+    {
+        var input = Helper.ReadInputLines("Day1Input2.txt", overrideFolderNameByDay: true);
+        var result = Day1.GetSecondAnswer(input);
+
+        result.Should().Be(281);
+    }
 }
 

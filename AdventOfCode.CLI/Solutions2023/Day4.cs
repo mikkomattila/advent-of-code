@@ -21,9 +21,11 @@ public class Day4 : IDay
         return new DayResult($"{firstAnswer}", $"{secondAnswer}");
     }
 
-    public static double GetFirstAnswer(string[] inputLines)
+    public static double GetFirstAnswer(string[] input)
     {
-        var cards = inputLines.Select(CreateCard).ToList();
+        var cards = input
+            .Select(CreateCard)
+            .ToList();
 
         return cards.Sum(card =>
             card.MatchingNumbers.Any()
@@ -32,48 +34,38 @@ public class Day4 : IDay
             );
     }
 
-    public static double GetSecondAnswer(string[] inputLines)
+    public static double GetSecondAnswer(string[] input)
     {
-        var cards = inputLines.Select(CreateCard).ToList();
-        var result = cards.Count;
+        var result = 0;
 
-        foreach (var card in cards)
+        var initialCards = input
+            .Select(CreateCard)
+            .ToList();
+
+        foreach (var card in initialCards)
         {
             var isMatchFound = card.MatchingNumbers.Any();
             if (!isMatchFound) continue;
 
-            var nextIds = GetNextCardMatchingIdsRecursively(card, cards);
+            var nextIds = GetNextCardMatchingIdsRecursively(card, initialCards);
             result += nextIds.Count;
         }
 
-        return result;
+        return result + initialCards.Count;
     }
 
     private static IReadOnlyList<int> GetNextCardMatchingIdsRecursively(Card card, List<Card> initialCards) 
     {
         List<int> idList = new();
-        List<Card> nextCards = new();
 
-        var matchingNumbersWithIndex = card.MatchingNumbers
-            .Select((value, i) => (value, i));
-
-        foreach (var (match, i) in matchingNumbersWithIndex)
+        foreach (var (match, i) in card.MatchingNumbers.Select((value, i) => (value, i)))
         {
-            var nextCard = initialCards.ElementAt(card.Id + i);
-            nextCards.Add(nextCard);
-        }
-
-        var nextCardIds = nextCards
-            .Where(c => c.Id != card.Id)
-            .Select(c => c.Id);
-
-        if (nextCardIds.Any())
-            idList.AddRange(nextCardIds);
-        
-        foreach (var nextCard in nextCards)
-        {
-            var nestedIds = GetNextCardMatchingIdsRecursively(nextCard, initialCards);
-            idList.AddRange(nestedIds);
+            var nextCardIndex = card.Id + i;
+            if (nextCardIndex >= initialCards.Count) continue;
+            
+            var nextCard = initialCards[nextCardIndex];
+            idList.Add(nextCard.Id);
+            idList.AddRange(GetNextCardMatchingIdsRecursively(nextCard, initialCards));
         }
 
         return idList;
@@ -81,8 +73,9 @@ public class Day4 : IDay
 
     private static Card CreateCard(string input)
     {
-        var idMatch = Regex.Match(input, @"\d+");
-        _ = int.TryParse(idMatch.Value, out int id);
+        var id = int.TryParse(Regex.Match(input, @"\d+").Value, out int parsedId) 
+            ? parsedId 
+            : 0;
 
         var parts = input.Split('|');
         var winningNumbers = ParseNumbers(parts[0].Split(':')[1]);

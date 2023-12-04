@@ -9,11 +9,8 @@ namespace AdventOfCode.Solutions2023;
 /// </summary>
 public class Day2 : IDay
 {
-    private const int _redMax = 12;
-    private const int _greenMax = 13;
-    private const int _blueMax = 14;
-
     public record Game(int Id, IReadOnlyList<Colors> Colors);
+
     public record Colors(int Red, int Green, int Blue);
 
     public DayResult GetResultForDay()
@@ -55,7 +52,7 @@ public class Day2 : IDay
 
     public static int GetFirstAnswer(IEnumerable<Game> games)
         => games
-            .Where(g => g.Colors.All(c => c is { Red: <= _redMax, Green: <= _greenMax, Blue: <= _blueMax }))
+            .Where(g => g.Colors.All(c => c is { Red: <= 12, Green: <= 13, Blue: <= 14 }))
             .Sum(r => r.Id);
 
     public static int GetSecondAnswer(IEnumerable<Game> games)

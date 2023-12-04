@@ -8,7 +8,7 @@ public class Day2Tests
     [Fact]
     public static void ParseGamesFromStringInput_Returns_CorrectAnswer()
     {
-        var input = Helper.ReadInputLines("2Test");
+        var input = Helper.ReadInputLines("2");
         var games = Day2.ParseGamesFromStringInput(input);
 
         games.Should().NotBeEmpty();
@@ -39,7 +39,7 @@ public class Day2Tests
 
     protected static IReadOnlyList<Day2.Game> ParseGames()
     {
-        var input = Helper.ReadInputLines("2Test");
+        var input = Helper.ReadInputLines("2");
         return Day2.ParseGamesFromStringInput(input);
     }
 }

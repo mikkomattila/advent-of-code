@@ -13,9 +13,9 @@ if (int.TryParse(Console.ReadLine(), out int day))
             $"2023-{day} Answer 2: {result.SecondAnswer}\n"
         );
     }
-    catch (ArgumentException ex)
+    catch
     {
-        Console.WriteLine(ex.Message);
+        Console.WriteLine($"Error getting the answer for day: {day}");
     }
 }
 else

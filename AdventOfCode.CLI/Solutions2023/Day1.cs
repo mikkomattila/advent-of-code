@@ -35,13 +35,19 @@ public class Day1 : IDay
     public DayResult GetResultForDay()
     {
         var input = Helper.ReadInputLines("1");
-        var combinedDigits = ParseCombinedDigits(input);
-        var combinedDigitsIncludeWords = ParseCombinedDigits(input, true);
+        var firstAnswer = GetFirstAnswer(input);
+        var secondAnswer = GetSecondAnswer(input);
 
-        return new DayResult(combinedDigits.Sum(), combinedDigitsIncludeWords.Sum());
+        return new DayResult(firstAnswer, secondAnswer);
     }
-    
-    public static IReadOnlyList<int> ParseCombinedDigits(string[] input, bool includeSpelledNumbers = false)
+
+    public static int GetFirstAnswer(string[] input) 
+        => ParseCombinedDigits(input).Sum();
+
+    public static int GetSecondAnswer(string[] input) 
+        => ParseCombinedDigits(input, true).Sum();
+
+    private static IReadOnlyList<int> ParseCombinedDigits(string[] input, bool includeSpelledNumbers = false)
         => input.Select(i =>
             {
                 var numbersAggregate = AggregateNumbers(i, includeSpelledNumbers);
