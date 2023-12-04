@@ -4,8 +4,13 @@ public record DayResult
 {
     public DayResult(string firstAnswer, string secondAnswer)
     {
-        FirstAnswer = firstAnswer;
-        SecondAnswer = secondAnswer;
+        FirstAnswer = string.IsNullOrEmpty(firstAnswer) 
+            ? "No answer yet." 
+            : firstAnswer;
+
+        SecondAnswer = string.IsNullOrEmpty(secondAnswer) 
+            ? "No answer yet." 
+            : secondAnswer;
     }
 
     public DayResult(int firstAnswer, int secondAnswer)
