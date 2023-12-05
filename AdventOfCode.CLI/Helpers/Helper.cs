@@ -36,7 +36,7 @@ public static class Helper
     public static string[] ReadInputLines(string day, string folder = "Solutions2023", bool overrideFolderNameByDay = false)
     {
         var basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..");
-        var filePath = Path.Combine(basePath, folder, "Data", overrideFolderNameByDay ? day : $"Day{day}Input.txt");
+        var filePath = Path.Combine(basePath, folder, "InputData", overrideFolderNameByDay ? day : $"Day{day}Input.txt");
 
         return File.ReadAllLines(filePath);
     }

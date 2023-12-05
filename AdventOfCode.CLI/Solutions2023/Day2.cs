@@ -16,7 +16,7 @@ public class Day2 : IDay
     public DayResult GetResultForDay()
     {
         var input = Helper.ReadInputLines("2");
-        var games = ParseGamesFromStringInput(input);
+        var games = ParseGamesFromInput(input);
 
         var firstAnswer = GetFirstAnswer(games);
         var secondAnswer = GetSecondAnswer(games);
@@ -24,7 +24,27 @@ public class Day2 : IDay
         return new DayResult(firstAnswer, secondAnswer);
     }
 
-    public static IReadOnlyList<Game> ParseGamesFromStringInput(string[] input)
+    public static int GetFirstAnswer(IEnumerable<Game> games)
+        => games
+            .Where(g => g.Colors.All(c => c is { Red: <= 12, Green: <= 13, Blue: <= 14 }))
+            .Sum(r => r.Id);
+
+    public static int GetSecondAnswer(IEnumerable<Game> games)
+        => games
+            .Select(x =>
+                    new Colors(
+                        Red: x.Colors.MaxBy(c => c.Red)?.Red ?? 0,
+                        Green: x.Colors.MaxBy(c => c.Green)?.Green ?? 0,
+                        Blue: x.Colors.MaxBy(c => c.Blue)?.Blue ?? 0
+                    )
+            )
+            .Select(result =>
+            {
+                return result.Red * result.Green * result.Blue;
+            }
+        ).Sum();
+
+    public static IReadOnlyList<Game> ParseGamesFromInput(string[] input)
         => input.Select(x =>
         {
             var gameAndColors = x.Split(":");
@@ -49,25 +69,5 @@ public class Day2 : IDay
             );
         }
     ).ToList();
-
-    public static int GetFirstAnswer(IEnumerable<Game> games)
-        => games
-            .Where(g => g.Colors.All(c => c is { Red: <= 12, Green: <= 13, Blue: <= 14 }))
-            .Sum(r => r.Id);
-
-    public static int GetSecondAnswer(IEnumerable<Game> games)
-        => games
-            .Select(x =>
-                    new Colors(
-                        Red: x.Colors.MaxBy(c => c.Red)?.Red ?? 0,
-                        Green: x.Colors.MaxBy(c => c.Green)?.Green ?? 0,
-                        Blue: x.Colors.MaxBy(c => c.Blue)?.Blue ?? 0
-                    )
-            )
-            .Select(result =>
-            {
-                return result.Red * result.Green * result.Blue;
-            }
-        ).Sum();
 }
 

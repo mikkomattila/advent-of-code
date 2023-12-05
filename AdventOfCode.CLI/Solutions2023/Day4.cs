@@ -10,7 +10,11 @@ namespace AdventOfCode.Solutions2023;
 /// </summary>
 public class Day4 : IDay
 {
-    private record Card(int Id, IReadOnlyList<int> WinningNumbers, IReadOnlyList<int> MatchingNumbers);
+    private record Card(
+        int Id, 
+        IReadOnlyList<int> WinningNumbers, 
+        IReadOnlyList<int> MatchingNumbers
+    );
 
     public DayResult GetResultForDay()
     {
@@ -42,21 +46,22 @@ public class Day4 : IDay
             .Select(CreateCard)
             .ToList();
 
+        result += initialCards.Count;
+
         foreach (var card in initialCards)
         {
             var isMatchFound = card.MatchingNumbers.Any();
             if (!isMatchFound) continue;
 
-            var nextIds = GetNextCardMatchingIdsRecursively(card, initialCards);
-            result += nextIds.Count;
+            result += GetMatchingCardIdsRecursive(card, initialCards).Count;
         }
 
-        return result + initialCards.Count;
+        return result;
     }
 
-    private static IReadOnlyList<int> GetNextCardMatchingIdsRecursively(Card card, List<Card> initialCards) 
+    private static IReadOnlyList<int> GetMatchingCardIdsRecursive(Card card, List<Card> initialCards) 
     {
-        List<int> idList = new();
+        List<int> matchingCardIds = new();
 
         foreach (var (match, i) in card.MatchingNumbers.Select((value, i) => (value, i)))
         {
@@ -64,11 +69,11 @@ public class Day4 : IDay
             if (nextCardIndex >= initialCards.Count) continue;
             
             var nextCard = initialCards[nextCardIndex];
-            idList.Add(nextCard.Id);
-            idList.AddRange(GetNextCardMatchingIdsRecursively(nextCard, initialCards));
+            matchingCardIds.Add(nextCard.Id);
+            matchingCardIds.AddRange(GetMatchingCardIdsRecursive(nextCard, initialCards));
         }
 
-        return idList;
+        return matchingCardIds;
     }
 
     private static Card CreateCard(string input)
