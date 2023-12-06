@@ -5,5 +5,3 @@ Advent Of Code is an advent calendar of small coding challenges: https://advento
 #
 
 Run `dotnet run` in AdventOfCode.CLI folder to run the application.
-
-#

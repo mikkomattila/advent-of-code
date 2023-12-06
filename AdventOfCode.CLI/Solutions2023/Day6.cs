@@ -23,9 +23,7 @@ public class Day6 : IDay
     public static long GetFirstPart(string[] input)
     {
         var races = ParseRaceInput(input);
-        var numberOfWays = GetNumberOfWays(races);
-
-        return numberOfWays;
+        return GetNumberOfWays(races);
     }
 
     public static long GetSecondPart(string[] input)
@@ -34,7 +32,6 @@ public class Day6 : IDay
 
         var combinedTime = long.Parse(string.Concat(races.Select(x => x.Time)));
         var combinedDistance = long.Parse(string.Concat(races.Select(x => x.Distance)));
-
         var combinedRaces = new List<Race> { new Race(combinedTime, combinedDistance) };
 
         return GetNumberOfWays(combinedRaces);
