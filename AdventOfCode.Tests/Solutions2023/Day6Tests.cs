@@ -9,9 +9,17 @@ public class Day6Tests
     public void GetFirstAnswer_Returns_CorrectAnswer()
     {
         var input = Helper.ReadInputLines("6");
-        var race = Day6.ParseRaceInput(input);
-        var firstAnswer = Day6.GetFirstAnswer(race);
+        var firstAnswer = Day6.GetFirstAnswer(input);
 
         firstAnswer.Should().Be(288);
+    }
+
+    [Fact]
+    public void GetSecondAnswer_Returns_CorrectAnswer()
+    {
+        var input = Helper.ReadInputLines("6");
+        var firstAnswer = Day6.GetSecondAnswer(input);
+
+        firstAnswer.Should().Be(71503);
     }
 }
