@@ -23,7 +23,7 @@ public class Day6 : IDay
     public static long GetFirstPart(string[] input)
     {
         var races = ParseRaceInput(input);
-        return GetNumberOfWays(races);
+        return GetPossibilities(races);
     }
 
     public static long GetSecondPart(string[] input)
@@ -34,12 +34,12 @@ public class Day6 : IDay
         var combinedDistance = long.Parse(string.Concat(races.Select(x => x.Distance)));
         var combinedRaces = new List<Race> { new Race(combinedTime, combinedDistance) };
 
-        return GetNumberOfWays(combinedRaces);
+        return GetPossibilities(combinedRaces);
     }
 
-    private static long GetNumberOfWays(IReadOnlyList<Race> races)
+    private static long GetPossibilities(IReadOnlyList<Race> races)
     {
-        List<int> numberOfWays = new();
+        long result = 1;
         foreach (var race in races)
         {
             var count = 0;
@@ -49,11 +49,8 @@ public class Day6 : IDay
                 var distance = buttonHoldTime * raceTimeLeft;
                 if (distance > race.Distance) count++;
             }
-            numberOfWays.Add(count);
+            result *= count;
         }
-        var result = numberOfWays
-            .Aggregate((acc, x) => acc * x);
-
         return result;
     }
 
