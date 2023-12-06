@@ -6,19 +6,19 @@ namespace AdventOfCode.Tests.Solutions2023;
 public class Day2Tests
 {
     [Fact]
-    public static void GetFirstAnswer_Returns_CorrectAnswer()
+    public static void GetFirstPart_Returns_CorrectAnswer()
     {
         var games = ParseGames();
-        var result = Day2.GetFirstAnswer(games);
+        var result = Day2.GetFirstPart(games);
 
         result.Should().Be(8);
     }
 
     [Fact]
-    public static void GetSecondAnswer_Returns_CorrectAnswer()
+    public static void GetSecondPart_Returns_CorrectAnswer()
     {
         var games = ParseGames();
-        var result = Day2.GetSecondAnswer(games);
+        var result = Day2.GetSecondPart(games);
 
         result.Should().Be(2286);
     }

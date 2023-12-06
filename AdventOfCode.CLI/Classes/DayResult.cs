@@ -2,24 +2,24 @@
 
 public record DayResult
 {
-    public DayResult(string firstAnswer, string secondAnswer)
+    public DayResult(string firstPart, string secondPart)
     {
-        FirstAnswer = string.IsNullOrEmpty(firstAnswer) 
+        FirstPart = string.IsNullOrEmpty(firstPart) 
             ? "No answer yet." 
-            : firstAnswer;
+            : firstPart;
 
-        SecondAnswer = string.IsNullOrEmpty(secondAnswer) 
+        SecondPart = string.IsNullOrEmpty(secondPart) 
             ? "No answer yet." 
-            : secondAnswer;
+            : secondPart;
     }
 
-    public DayResult(int firstAnswer, int secondAnswer)
+    public DayResult(int firstPart, int secondPart)
     {
-        FirstAnswer = $"{firstAnswer}";
-        SecondAnswer = $"{secondAnswer}";
+        FirstPart = $"{firstPart}";
+        SecondPart = $"{secondPart}";
     }
 
-    public string FirstAnswer { get; set; } = null!;
+    public string FirstPart { get; set; } = null!;
 
-    public string SecondAnswer { get; set; } = null!;
+    public string SecondPart { get; set; } = null!;
 }

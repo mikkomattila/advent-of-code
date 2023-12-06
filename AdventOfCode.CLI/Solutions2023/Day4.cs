@@ -19,13 +19,13 @@ public class Day4 : IDay
     public DayResult GetResultForDay()
     {
         var input = Helper.ReadInputLines("4");
-        var firstAnswer = GetFirstAnswer(input);
-        var secondAnswer = GetSecondAnswer(input);
+        var firstPart = GetFirstPart(input);
+        var secondPart = GetSecondPart(input);
 
-        return new DayResult($"{firstAnswer}", $"{secondAnswer}");
+        return new DayResult($"{firstPart}", $"{secondPart}");
     }
 
-    public static double GetFirstAnswer(string[] input)
+    public static double GetFirstPart(string[] input)
     {
         var cards = input
             .Select(CreateCard)
@@ -38,7 +38,7 @@ public class Day4 : IDay
             );
     }
 
-    public static double GetSecondAnswer(string[] input)
+    public static double GetSecondPart(string[] input)
     {
         var result = 0;
 

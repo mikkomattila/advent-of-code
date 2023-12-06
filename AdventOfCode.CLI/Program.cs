@@ -9,8 +9,8 @@ if (int.TryParse(Console.ReadLine(), out int day))
     {
         var result = Helper.GetResultForDay(day);
         Console.WriteLine(
-            $"\n2023-{day} Answer 1: {result.FirstAnswer}\n" +
-            $"2023-{day} Answer 2: {result.SecondAnswer}\n"
+            $"\n2023-{day} Answer 1: {result.FirstPart}\n" +
+            $"2023-{day} Answer 2: {result.SecondPart}\n"
         );
     }
     catch

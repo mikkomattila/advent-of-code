@@ -6,21 +6,21 @@ namespace AdventOfCode.Tests.Solutions2023;
 public class Day4Tests
 {
     [Fact]
-    public void GetFirstAnswer_Returns_CorrectAnswer()
+    public void GetFirstPart_Returns_CorrectAnswer()
     {
         var input = GetInput();
-        var firstAnswer = Day4.GetFirstAnswer(input);
+        var firstPart = Day4.GetFirstPart(input);
 
-        firstAnswer.Should().Be(13.0);
+        firstPart.Should().Be(13.0);
     }
 
     [Fact]
-    public void GetSecondAnswer_Returns_CorrectAnswer()
+    public void GetSecondPart_Returns_CorrectAnswer()
     {
         var input = GetInput();
-        var firstAnswer = Day4.GetSecondAnswer(input);
+        var secondPart = Day4.GetSecondPart(input);
 
-        firstAnswer.Should().Be(30.0);
+        secondPart.Should().Be(30.0);
     }
 
     protected static string[] GetInput() 

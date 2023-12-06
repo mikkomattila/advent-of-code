@@ -14,13 +14,13 @@ public class Day6 : IDay
     public DayResult GetResultForDay()
     {
         var input = Helper.ReadInputLines("6");
-        var firstAnswer = GetFirstAnswer(input);
-        var secondAnswer = GetSecondAnswer(input);
+        var firstPart = GetFirstPart(input);
+        var secondPart = GetSecondPart(input);
 
-        return new DayResult($"{firstAnswer}", $"{secondAnswer}");
+        return new DayResult($"{firstPart}", $"{secondPart}");
     }
 
-    public static long GetFirstAnswer(string[] input)
+    public static long GetFirstPart(string[] input)
     {
         var races = ParseRaceInput(input);
         var numberOfWays = GetNumberOfWays(races);
@@ -28,7 +28,7 @@ public class Day6 : IDay
         return numberOfWays;
     }
 
-    public static long GetSecondAnswer(string[] input)
+    public static long GetSecondPart(string[] input)
     {
         var races = ParseRaceInput(input);
 

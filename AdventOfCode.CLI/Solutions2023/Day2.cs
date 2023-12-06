@@ -18,18 +18,18 @@ public class Day2 : IDay
         var input = Helper.ReadInputLines("2");
         var games = ParseGamesFromInput(input);
 
-        var firstAnswer = GetFirstAnswer(games);
-        var secondAnswer = GetSecondAnswer(games);
+        var firstPart = GetFirstPart(games);
+        var secondPart = GetSecondPart(games);
 
-        return new DayResult(firstAnswer, secondAnswer);
+        return new DayResult(firstPart, secondPart);
     }
 
-    public static int GetFirstAnswer(IEnumerable<Game> games)
+    public static int GetFirstPart(IEnumerable<Game> games)
         => games
             .Where(g => g.Colors.All(c => c is { Red: <= 12, Green: <= 13, Blue: <= 14 }))
             .Sum(r => r.Id);
 
-    public static int GetSecondAnswer(IEnumerable<Game> games)
+    public static int GetSecondPart(IEnumerable<Game> games)
         => games
             .Select(x =>
                     new Colors(

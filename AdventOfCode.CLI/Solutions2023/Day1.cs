@@ -35,16 +35,16 @@ public class Day1 : IDay
     public DayResult GetResultForDay()
     {
         var input = Helper.ReadInputLines("1");
-        var firstAnswer = GetFirstAnswer(input);
-        var secondAnswer = GetSecondAnswer(input);
+        var firstPart = GetFirstPart(input);
+        var secondPart = GetSecondPart(input);
 
-        return new DayResult(firstAnswer, secondAnswer);
+        return new DayResult(firstPart, secondPart);
     }
 
-    public static int GetFirstAnswer(string[] input) 
+    public static int GetFirstPart(string[] input) 
         => ParseCombinedDigits(input).Sum();
 
-    public static int GetSecondAnswer(string[] input) 
+    public static int GetSecondPart(string[] input) 
         => ParseCombinedDigits(input, true).Sum();
 
     private static IReadOnlyList<int> ParseCombinedDigits(string[] input, bool includeSpelledNumbers = false)

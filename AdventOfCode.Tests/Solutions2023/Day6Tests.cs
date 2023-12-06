@@ -6,20 +6,20 @@ namespace AdventOfCode.Tests.Solutions2023;
 public class Day6Tests
 {
     [Fact]
-    public void GetFirstAnswer_Returns_CorrectAnswer()
+    public void GetFirstPart_Returns_CorrectAnswer()
     {
         var input = Helper.ReadInputLines("6");
-        var firstAnswer = Day6.GetFirstAnswer(input);
+        var firstPart = Day6.GetFirstPart(input);
 
-        firstAnswer.Should().Be(288);
+        firstPart.Should().Be(288);
     }
 
     [Fact]
-    public void GetSecondAnswer_Returns_CorrectAnswer()
+    public void GetSecondPart_Returns_CorrectAnswer()
     {
         var input = Helper.ReadInputLines("6");
-        var firstAnswer = Day6.GetSecondAnswer(input);
+        var secondPart = Day6.GetSecondPart(input);
 
-        firstAnswer.Should().Be(71503);
+        secondPart.Should().Be(71503);
     }
 }
