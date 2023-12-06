@@ -22,7 +22,7 @@ public class Day4 : IDay
         var firstPart = GetFirstPart(input);
         var secondPart = GetSecondPart(input);
 
-        return new DayResult($"{firstPart}", $"{secondPart}");
+        return new DayResult(firstPart, secondPart);
     }
 
     public static double GetFirstPart(string[] input)

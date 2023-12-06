@@ -17,7 +17,7 @@ public class Day6 : IDay
         var firstPart = GetFirstPart(input);
         var secondPart = GetSecondPart(input);
 
-        return new DayResult($"{firstPart}", $"{secondPart}");
+        return new DayResult(firstPart, secondPart);
     }
 
     public static long GetFirstPart(string[] input)
