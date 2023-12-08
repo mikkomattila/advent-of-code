@@ -29,7 +29,7 @@ public class Day8 : IDay
         {
             if (i >= instruction.Length) i = 0;
 
-            currentKey = instruction[i] == 'L'
+            currentKey = instruction[i] is 'L'
                 ? nodeLookup[currentKey].Left
                 : nodeLookup[currentKey].Right;
 
@@ -44,7 +44,7 @@ public class Day8 : IDay
     {
         var (instruction, nodes) = ParseNetwork(input);
         var nodeLookup = nodes.ToDictionary(n => n.Key);
-        var currentNodes = nodes.Where(x => x.Key.EndsWith('A'));
+        var currentNodes = nodes.Where(n => n.Key.EndsWith('A'));
 
         int i = 0;
         List<long> stepList = new();
@@ -58,7 +58,7 @@ public class Day8 : IDay
                 if (i >= instruction.Length)
                     i = 0;
 
-                node = nodeLookup[instruction[i] == 'L'
+                node = nodeLookup[instruction[i] is 'L'
                     ? node.Left
                     : node.Right];
 
