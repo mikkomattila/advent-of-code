@@ -23,7 +23,7 @@ public class Day8 : IDay
         var network = ParseNetwork(input);
 
         var currentKey = "AAA";
-        int count = 0, i = 0;
+        int steps = 0, i = 0;
 
         while (currentKey != "ZZZ")
         {
@@ -35,18 +35,49 @@ public class Day8 : IDay
                 ? node.Left
                 : node.Right;
 
-            count++;
+            steps++;
             i++;
         }
 
-        return count;
+        return steps;
     }
 
     public static long GetSecondPart(string[] input)
     {
-        var network = ParseNetwork(input);
+        var (instruction, nodes) = ParseNetwork(input);
 
-        return 0;
+        var nodeLookup = nodes
+            .ToDictionary(n => n.Key);
+
+        var currentNodes = nodes
+            .Where(x => x.Key.EndsWith('A'))
+            .ToList();
+
+        int i = 0;
+        List<long> stepList = new();
+
+        foreach (var currentNode in currentNodes)
+        {
+            var steps = 0L;
+            var node = currentNode;
+
+            while (!node.Key.EndsWith('Z'))
+            {
+                if (i >= instruction.Length)
+                    i = 0;
+
+                node = nodeLookup[instruction[i] == 'L'
+                    ? node.Left
+                    : node.Right];
+
+                i++;
+                steps++;
+            }
+            stepList.Add(steps);
+        }
+
+        var leastCommonMultiple = Helper.FindLeastCommonMultiple(stepList.ToArray());
+        return leastCommonMultiple;
     }
 
     private static Network ParseNetwork(string[] input)

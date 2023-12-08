@@ -7,7 +7,7 @@ public class HelperTests
     [InlineData(2, 2023, "8", "2286")]
     [InlineData(4, 2023, "13", "30")]
     [Theory]
-    public void GetResultForDay_Returns_CorrectAnswer(int day, int year, string firstPart, string secondPart)
+    public void GetResultForDay_Returns_CorrectResult(int day, int year, string firstPart, string secondPart)
     {
         var result = Helper.GetResultForDay(day, year);
 
@@ -18,13 +18,46 @@ public class HelperTests
         result.SecondPart.Should().BeEquivalentTo(secondPart);
     }
 
-    [Fact]
-    public void ReadInputLines_Returns_CorrectAmountOfRows()
+    [Theory]
+    [InlineData("Day1Input2.txt", true, 7)]
+    [InlineData("2", false, 5)]
+    public void ReadInputLines_Returns_CorrectAmountOfRows(string fileName, bool overrideFolder, int expected)
     {
-        var input1 = Helper.ReadInputLines("Day1Input2.txt", overrideFolderNameByDay: true);
-        var input2 = Helper.ReadInputLines("2");
+        var result = Helper.ReadInputLines(fileName, overrideFolderNameByDay: overrideFolder);
 
-        input1.Length.Should().Be(7);
-        input2.Length.Should().Be(5);
+        result.Length.Should().Be(expected);
+    }
+
+    [Theory]
+    [InlineData(4, 6, 2)]
+    [InlineData(8, 12, 4)]
+    [InlineData(5, 7, 1)]
+    public void GetGreatestCommonDivisor_Returns_CorrectResult(long a, long b, long expected)
+    {
+        var result = Helper.GetGreatestCommonDivisor(a, b);
+
+        result.Should().Be(expected);
+    }
+
+    [Theory]
+    [InlineData(4, 6, 12)]
+    [InlineData(5, 7, 35)]
+    [InlineData(10, 15, 30)]
+    public void GetLeastCommonMultiple_Returns_CorrectResult(long a, long b, long expected)
+    {
+        var result = Helper.GetLeastCommonMultiple(a, b);
+
+        result.Should().Be(expected);
+    }
+
+    [Theory]
+    [InlineData(new long[] { 4, 6, 8, 10 }, 120)]
+    [InlineData(new long[] { 3, 5, 7 }, 105)]
+    [InlineData(new long[] { 2, 3, 4, 5, 6 }, 60)]
+    public void FindLeastCommonMultiple_Returns_CorrectResult(long[] numbers, long expected)
+    {
+        var result = Helper.FindLeastCommonMultiple(numbers);
+
+        result.Should().Be(expected);
     }
 }
