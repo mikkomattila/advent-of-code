@@ -19,22 +19,19 @@ public class Day8 : IDay
         return new DayResult(firstPart, secondPart);
     }
 
-    public static int GetFirstPart(string[] input)
+    public static int GetFirstPart(string[] input, string currentKey = "AAA", string targetKey = "ZZZ")
     {
-        var network = ParseNetwork(input);
+        var (instruction, nodes) = ParseNetwork(input);
+        var nodeLookup = nodes.ToDictionary(n => n.Key);
 
-        var currentKey = "AAA";
         int steps = 0, i = 0;
-
-        while (currentKey != "ZZZ")
+        while (currentKey != targetKey)
         {
-            if (i >= network.Instruction.Length) i = 0;
-            var instruction = network.Instruction[i];
-            var node = network.Nodes.First(n => n.Key == currentKey);
+            if (i >= instruction.Length) i = 0;
 
-            currentKey = instruction == 'L'
-                ? node.Left
-                : node.Right;
+            currentKey = instruction[i] == 'L'
+                ? nodeLookup[currentKey].Left
+                : nodeLookup[currentKey].Right;
 
             steps++;
             i++;
@@ -46,13 +43,8 @@ public class Day8 : IDay
     public static long GetSecondPart(string[] input)
     {
         var (instruction, nodes) = ParseNetwork(input);
-
-        var nodeLookup = nodes
-            .ToDictionary(n => n.Key);
-
-        var currentNodes = nodes
-            .Where(x => x.Key.EndsWith('A'))
-            .ToList();
+        var nodeLookup = nodes.ToDictionary(n => n.Key);
+        var currentNodes = nodes.Where(x => x.Key.EndsWith('A'));
 
         int i = 0;
         List<long> stepList = new();
@@ -61,7 +53,6 @@ public class Day8 : IDay
         {
             var steps = 0L;
             var node = currentNode;
-
             while (!node.Key.EndsWith('Z'))
             {
                 if (i >= instruction.Length)
@@ -71,14 +62,14 @@ public class Day8 : IDay
                     ? node.Left
                     : node.Right];
 
-                i++;
                 steps++;
+                i++;
             }
             stepList.Add(steps);
         }
 
-        var leastCommonMultiple = Maths.FindLeastCommonMultiple(stepList.ToArray());
-        return leastCommonMultiple;
+        var result = Maths.FindLeastCommonMultiple(stepList.ToArray());
+        return result;
     }
 
     private static Network ParseNetwork(string[] input)
@@ -86,18 +77,11 @@ public class Day8 : IDay
             input[0],
             input[2..]
                 .Select(x =>
-                {
-                    var key = x.Split("=")[0].Trim();
-
-                    var first = x.IndexOf("(");
-                    var comma = x.IndexOf(",");
-                    var second = x.IndexOf(")");
-
-                    var left = x.Substring(first + 1, comma - first - 1).Trim();
-                    var right = x.Substring(comma + 1, second - comma - 1).Trim();
-
-                    return new Node(key, left, right);
-                }
+                    new Node(
+                        x.Split("=")[0].Trim(),
+                        x.Substring(x.IndexOf("(") + 1, x.IndexOf(",") - x.IndexOf("(") - 1).Trim(),
+                        x.Substring(x.IndexOf(",") + 1, x.IndexOf(")") - x.IndexOf(",") - 1).Trim()
+                    )
             ).ToList()
         );
 }
