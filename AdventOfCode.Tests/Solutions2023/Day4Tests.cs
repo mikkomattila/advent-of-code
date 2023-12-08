@@ -1,4 +1,5 @@
-﻿using AdventOfCode.Solutions2023;
+﻿using AdventOfCode.CLI.Helpers;
+using AdventOfCode.CLI.Solutions2023;
 using FluentAssertions;
 
 namespace AdventOfCode.Tests.Solutions2023;
@@ -23,6 +24,6 @@ public class Day4Tests
         secondPart.Should().Be(30.0);
     }
 
-    protected static string[] GetInput() 
+    protected static string[] GetInput()
         => Common.ReadInputLines("4");
 }

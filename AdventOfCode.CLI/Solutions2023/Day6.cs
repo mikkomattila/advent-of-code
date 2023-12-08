@@ -1,12 +1,9 @@
-﻿using AdventOfCode.Classes;
-using AdventOfCode.Interfaces;
+﻿using AdventOfCode.CLI.Classes;
+using AdventOfCode.CLI.Helpers;
+using AdventOfCode.CLI.Interfaces;
 
-namespace AdventOfCode.Solutions2023;
+namespace AdventOfCode.CLI.Solutions2023;
 
-/// <summary>
-/// Solution for day 6 of 2023.
-/// Instructions: https://adventofcode.com/2023/day/6.
-/// </summary>
 public class Day6 : IDay
 {
     public record Race(long Time, long Distance);

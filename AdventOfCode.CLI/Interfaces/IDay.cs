@@ -1,6 +1,6 @@
-﻿using AdventOfCode.Classes;
+﻿using AdventOfCode.CLI.Classes;
 
-namespace AdventOfCode.Interfaces;
+namespace AdventOfCode.CLI.Interfaces;
 
 public interface IDay
 {

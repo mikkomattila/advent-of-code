@@ -1,4 +1,4 @@
-﻿using AdventOfCode;
+﻿using AdventOfCode.CLI.Helpers;
 
 Console.WriteLine("Advent of Code\n");
 Console.WriteLine("Get solution for day:");

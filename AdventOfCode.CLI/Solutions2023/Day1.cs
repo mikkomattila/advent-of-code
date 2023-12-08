@@ -1,16 +1,13 @@
-﻿using AdventOfCode.Classes;
-using AdventOfCode.Interfaces;
+﻿using AdventOfCode.CLI.Classes;
+using AdventOfCode.CLI.Helpers;
+using AdventOfCode.CLI.Interfaces;
 using System.Text.RegularExpressions;
 
-namespace AdventOfCode.Solutions2023;
+namespace AdventOfCode.CLI.Solutions2023;
 
-/// <summary>
-/// Solution for day 1 of 2023.
-/// Instructions: https://adventofcode.com/2023/day/1.
-/// </summary>
 public class Day1 : IDay
 {
-    private static readonly Dictionary<string, string> _numericMapping = new() 
+    private static readonly Dictionary<string, string> _numericMapping = new()
     {
         { "one", "1" },
         { "two", "2" },
@@ -41,10 +38,10 @@ public class Day1 : IDay
         return new DayResult(firstPart, secondPart);
     }
 
-    public static int GetFirstPart(string[] input) 
+    public static int GetFirstPart(string[] input)
         => ParseCombinedDigits(input).Sum();
 
-    public static int GetSecondPart(string[] input) 
+    public static int GetSecondPart(string[] input)
         => ParseCombinedDigits(input, true).Sum();
 
     private static IReadOnlyList<int> ParseCombinedDigits(string[] input, bool includeSpelledNumbers = false)
@@ -56,7 +53,7 @@ public class Day1 : IDay
 
                 return int.Parse(firstDigit) * 10 + int.Parse(secondDigit); ;
             }
-        ).ToList() 
+        ).ToList()
         ?? new List<int>();
 
     private static string AggregateNumbers(string input, bool includeSpelledNumbers)

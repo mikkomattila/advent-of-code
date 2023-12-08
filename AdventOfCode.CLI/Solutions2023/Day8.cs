@@ -1,8 +1,8 @@
-﻿using AdventOfCode.Classes;
+﻿using AdventOfCode.CLI.Classes;
 using AdventOfCode.CLI.Helpers;
-using AdventOfCode.Interfaces;
+using AdventOfCode.CLI.Interfaces;
 
-namespace AdventOfCode.Solutions2023;
+namespace AdventOfCode.CLI.Solutions2023;
 
 public class Day8 : IDay
 {
@@ -55,8 +55,7 @@ public class Day8 : IDay
             var node = currentNode;
             while (!node.Key.EndsWith('Z'))
             {
-                if (i >= instruction.Length)
-                    i = 0;
+                if (i >= instruction.Length) i = 0;
 
                 node = nodeLookup[instruction[i] is 'L'
                     ? node.Left
@@ -82,6 +81,7 @@ public class Day8 : IDay
                         x.Substring(x.IndexOf("(") + 1, x.IndexOf(",") - x.IndexOf("(") - 1).Trim(),
                         x.Substring(x.IndexOf(",") + 1, x.IndexOf(")") - x.IndexOf(",") - 1).Trim()
                     )
-            ).ToList()
+                )
+            .ToList()
         );
 }

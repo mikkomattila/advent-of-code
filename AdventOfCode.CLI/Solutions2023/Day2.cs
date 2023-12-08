@@ -1,12 +1,9 @@
-﻿using AdventOfCode.Classes;
-using AdventOfCode.Interfaces;
+﻿using AdventOfCode.CLI.Classes;
+using AdventOfCode.CLI.Helpers;
+using AdventOfCode.CLI.Interfaces;
 
-namespace AdventOfCode.Solutions2023;
+namespace AdventOfCode.CLI.Solutions2023;
 
-/// <summary>
-/// Solution for day 2 of 2023.
-/// Instructions: https://adventofcode.com/2023/day/2.
-/// </summary>
 public class Day2 : IDay
 {
     public record Game(int Id, IReadOnlyList<Colors> Colors);

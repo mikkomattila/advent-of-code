@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode.Classes;
+﻿namespace AdventOfCode.CLI.Classes;
 
 public record DayResult
 {
@@ -9,6 +9,6 @@ public record DayResult
     }
 
     public string FirstPart { get; }
-    
+
     public string SecondPart { get; }
 }

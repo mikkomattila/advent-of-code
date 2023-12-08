@@ -1,7 +1,7 @@
-﻿using AdventOfCode.Classes;
-using AdventOfCode.Interfaces;
+﻿using AdventOfCode.CLI.Classes;
+using AdventOfCode.CLI.Interfaces;
 
-namespace AdventOfCode;
+namespace AdventOfCode.CLI.Helpers;
 
 public static class Common
 {
@@ -13,7 +13,7 @@ public static class Common
     /// <returns></returns>
     public static DayResult GetResultForDay(int day, int year = 2023)
     {
-        var className = $"AdventOfCode.Solutions{year}.Day{day}";
+        var className = $"AdventOfCode.CLI.Solutions{year}.Day{day}";
         var dayType = Type.GetType(className);
 
         if (dayType is null)

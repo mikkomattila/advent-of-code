@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using AdventOfCode.CLI.Helpers;
+using FluentAssertions;
 
 namespace AdventOfCode.Tests.Helpers;
 

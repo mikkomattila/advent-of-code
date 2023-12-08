@@ -1,4 +1,5 @@
-using AdventOfCode.Solutions2023;
+using AdventOfCode.CLI.Helpers;
+using AdventOfCode.CLI.Solutions2023;
 using FluentAssertions;
 
 namespace AdventOfCode.Tests.Solutions2023;

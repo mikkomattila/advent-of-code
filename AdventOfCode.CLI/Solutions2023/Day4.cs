@@ -1,18 +1,15 @@
-﻿using AdventOfCode.Classes;
-using AdventOfCode.Interfaces;
+﻿using AdventOfCode.CLI.Classes;
+using AdventOfCode.CLI.Helpers;
+using AdventOfCode.CLI.Interfaces;
 using System.Text.RegularExpressions;
 
-namespace AdventOfCode.Solutions2023;
+namespace AdventOfCode.CLI.Solutions2023;
 
-/// <summary>
-/// Solution for day 4 of 2023.
-/// Instructions: https://adventofcode.com/2023/day/4.
-/// </summary>
 public class Day4 : IDay
 {
     private record Card(
-        int Id, 
-        IReadOnlyList<int> WinningNumbers, 
+        int Id,
+        IReadOnlyList<int> WinningNumbers,
         IReadOnlyList<int> MatchingNumbers
     );
 
@@ -59,7 +56,7 @@ public class Day4 : IDay
         return result;
     }
 
-    private static IReadOnlyList<int> GetMatchingCardIdsRecursive(Card card, List<Card> initialCards) 
+    private static IReadOnlyList<int> GetMatchingCardIdsRecursive(Card card, List<Card> initialCards)
     {
         List<int> matchingCardIds = new();
 
@@ -67,7 +64,7 @@ public class Day4 : IDay
         {
             var nextCardIndex = card.Id + i;
             if (nextCardIndex >= initialCards.Count) continue;
-            
+
             var nextCard = initialCards[nextCardIndex];
             matchingCardIds.Add(nextCard.Id);
             matchingCardIds.AddRange(GetMatchingCardIdsRecursive(nextCard, initialCards));
@@ -78,8 +75,8 @@ public class Day4 : IDay
 
     private static Card CreateCard(string input)
     {
-        var id = int.TryParse(Regex.Match(input, @"\d+").Value, out int parsedId) 
-            ? parsedId 
+        var id = int.TryParse(Regex.Match(input, @"\d+").Value, out int parsedId)
+            ? parsedId
             : 0;
 
         var parts = input.Split('|');
