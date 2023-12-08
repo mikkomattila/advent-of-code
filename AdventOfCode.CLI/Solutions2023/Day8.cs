@@ -23,8 +23,7 @@ public class Day8 : IDay
         var network = ParseNetwork(input);
 
         var currentKey = "AAA";
-        var count = 0;
-        var i = 0;
+        int count = 0, i = 0;
 
         while (currentKey != "ZZZ")
         {
