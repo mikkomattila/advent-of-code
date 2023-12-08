@@ -3,7 +3,7 @@ using AdventOfCode.Interfaces;
 
 namespace AdventOfCode;
 
-public static class Helper
+public static class Common
 {
     /// <summary>
     /// Get result for specified day.
@@ -39,30 +39,5 @@ public static class Helper
         var filePath = Path.Combine(basePath, folder, "InputData", overrideFolderNameByDay ? day : $"Day{day}Input.txt");
 
         return File.ReadAllLines(filePath);
-    }
-
-    public static long GetGreatestCommonDivisor(long a, long b)
-    {
-        while (b != 0)
-        {
-            var temp = b;
-            b = a % b;
-            a = temp;
-        }
-
-        return a;
-    }
-
-    public static long GetLeastCommonMultiple(long a, long b)
-        => (a * b) / GetGreatestCommonDivisor(a, b);
-
-    public static long FindLeastCommonMultiple(long[] numbers)
-    {
-        var lcm = 1L;
-
-        foreach (var number in numbers)
-            lcm = GetLeastCommonMultiple(lcm, number);
-
-        return lcm;
     }
 }

@@ -15,7 +15,7 @@ public class Day2 : IDay
 
     public DayResult GetResultForDay()
     {
-        var input = Helper.ReadInputLines("2");
+        var input = Common.ReadInputLines("2");
         var games = ParseGamesFromInput(input);
 
         var firstPart = GetFirstPart(games);

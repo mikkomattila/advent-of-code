@@ -24,5 +24,5 @@ public class Day4Tests
     }
 
     protected static string[] GetInput() 
-        => Helper.ReadInputLines("4");
+        => Common.ReadInputLines("4");
 }

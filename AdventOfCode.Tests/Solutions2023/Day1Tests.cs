@@ -8,7 +8,7 @@ public class Day1Tests
     [Fact]
     public void GetFirstPart_Returns_CorrectAnswer()
     {
-        var input = Helper.ReadInputLines("Day1Input1.txt", overrideFolderNameByDay: true);
+        var input = Common.ReadInputLines("Day1Input1.txt", overrideFolderNameByDay: true);
         var result = Day1.GetFirstPart(input);
 
         result.Should().Be(142);
@@ -17,7 +17,7 @@ public class Day1Tests
     [Fact]
     public void GetSecondPart_Returns_CorrectAnswer()
     {
-        var input = Helper.ReadInputLines("Day1Input2.txt", overrideFolderNameByDay: true);
+        var input = Common.ReadInputLines("Day1Input2.txt", overrideFolderNameByDay: true);
         var result = Day1.GetSecondPart(input);
 
         result.Should().Be(281);

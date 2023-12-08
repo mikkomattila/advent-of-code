@@ -18,7 +18,7 @@ public class Day4 : IDay
 
     public DayResult GetResultForDay()
     {
-        var input = Helper.ReadInputLines("4");
+        var input = Common.ReadInputLines("4");
         var firstPart = GetFirstPart(input);
         var secondPart = GetSecondPart(input);
 

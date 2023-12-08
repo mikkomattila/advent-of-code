@@ -1,4 +1,5 @@
 ﻿using AdventOfCode.Classes;
+using AdventOfCode.CLI.Helpers;
 using AdventOfCode.Interfaces;
 
 namespace AdventOfCode.Solutions2023;
@@ -11,7 +12,7 @@ public class Day8 : IDay
 
     public DayResult GetResultForDay()
     {
-        var input = Helper.ReadInputLines("8");
+        var input = Common.ReadInputLines("8");
         var firstPart = GetFirstPart(input);
         var secondPart = GetSecondPart(input);
 
@@ -76,7 +77,7 @@ public class Day8 : IDay
             stepList.Add(steps);
         }
 
-        var leastCommonMultiple = Helper.FindLeastCommonMultiple(stepList.ToArray());
+        var leastCommonMultiple = Maths.FindLeastCommonMultiple(stepList.ToArray());
         return leastCommonMultiple;
     }
 

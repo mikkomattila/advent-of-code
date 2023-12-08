@@ -8,7 +8,7 @@ public class Day6Tests
     [Fact]
     public void GetFirstPart_Returns_CorrectAnswer()
     {
-        var input = Helper.ReadInputLines("6");
+        var input = Common.ReadInputLines("6");
         var firstPart = Day6.GetFirstPart(input);
 
         firstPart.Should().Be(288);
@@ -17,7 +17,7 @@ public class Day6Tests
     [Fact]
     public void GetSecondPart_Returns_CorrectAnswer()
     {
-        var input = Helper.ReadInputLines("6");
+        var input = Common.ReadInputLines("6");
         var secondPart = Day6.GetSecondPart(input);
 
         secondPart.Should().Be(71503);

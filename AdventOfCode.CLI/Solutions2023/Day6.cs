@@ -13,7 +13,7 @@ public class Day6 : IDay
 
     public DayResult GetResultForDay()
     {
-        var input = Helper.ReadInputLines("6");
+        var input = Common.ReadInputLines("6");
         var firstPart = GetFirstPart(input);
         var secondPart = GetSecondPart(input);
 
