@@ -9,7 +9,7 @@ public class Day8Tests
     public void GetFirstPart_Returns_CorrectAnswer()
     {
         var input = Helper.ReadInputLines("8");
-        var firstPart = Day8.GetFirstPart(input, "AAA", "ZZZ");
+        var firstPart = Day8.GetFirstPart(input);
 
         firstPart.Should().Be(6);
     }

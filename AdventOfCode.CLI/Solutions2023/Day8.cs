@@ -1,6 +1,5 @@
 ﻿using AdventOfCode.Classes;
 using AdventOfCode.Interfaces;
-using System.Diagnostics;
 
 namespace AdventOfCode.Solutions2023;
 
@@ -19,34 +18,27 @@ public class Day8 : IDay
         return new DayResult(firstPart, secondPart);
     }
 
-    public static int GetFirstPart(string[] input, string initialKey = "AAA", string targetKey = "ZZZ")
+    public static int GetFirstPart(string[] input)
     {
         var network = ParseNetwork(input);
 
-        var key = initialKey;
+        var currentKey = "AAA";
         var count = 0;
-        var instructionIndex = 0;
+        var i = 0;
 
-        var sw = Stopwatch.StartNew();
-
-        while (key != targetKey)
+        while (currentKey != "ZZZ")
         {
-            if (instructionIndex >= network.Instruction.Length) instructionIndex = 0;
-            var instruction = network.Instruction[instructionIndex];
+            if (i >= network.Instruction.Length) i = 0;
+            var instruction = network.Instruction[i];
+            var node = network.Nodes.First(n => n.Key == currentKey);
 
-            var node = network.Nodes.First(n => n.Key == key);
-            key = instruction == 'L' ? node.Left : node.Right;
+            currentKey = instruction == 'L'
+                ? node.Left
+                : node.Right;
 
-            count += 1;
-            instructionIndex += 1;
-
-            Console.WriteLine($"{node.Key} - {count}");
+            count++;
+            i++;
         }
-
-        Console.WriteLine($"Last key: {key}");
-
-        sw.Stop();
-        Console.WriteLine($"Elapsed time: {sw.Elapsed}");
 
         return count;
     }
